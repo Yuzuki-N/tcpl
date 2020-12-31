@@ -8,7 +8,7 @@ int main()
     int c;
     int state = OUT;
 
-    while ((c == getchar()) != EOF) {
+    while ((c = getchar()) != EOF) {
         if (c == ' ' || c == '\t' || c == '\n') {
             if (state == IN) {
                 putchar('\n');
