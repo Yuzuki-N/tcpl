@@ -1,18 +1,25 @@
-//
-//  count_word.c
-//  C-Lang
-//
-//  Created by yuzuki on 2020/12/31.
-//
-
 #include <stdio.h>
+
+#define IN 1
+#define OUT 0
 
 int main()
 {
-    double nc;
-    
-    for (nc = 0; getchar() != EOF; ++nc)
-    ;
-    printf("%.0f\n", nc);
-}
+    int c, nl, nw, nc, state;
 
+    state = OUT;
+    nl = nw = nc = 0;
+
+    while ((c = getchar()) != EOF) {
+        ++nc;
+        if (c == '\n')
+            ++nl;
+        if (c == ' ' || c == '\n' || c == '\t')
+            state = OUT;
+        else if (state == OUT) {
+            state = IN;
+            ++nw;
+        }
+    }
+    printf("%d %d %d\n", nl, nw, nc);
+}
