@@ -1,48 +1,45 @@
 #include <stdio.h>
-#define MAXLINE 1000
 
-int readline(char line[], int lim);
-void copy(char to[], char from[]);
+#define MAXLEN 1000
+
+int readline(line[], lim);
+void copy(to[], from[]);
 
 int main()
 {
     int len, max;
-    int line[MAXLINE];
-    int longest[MAXLINE];
+    char line[MAXLEN];
+    char longest[MAXLEN];
     
     max = 0;
-    
-    while ((len = readline(line, MAXLINE)) > 0) {
-        if (len > max) {
+    while ((len = readline(line, MAXLEN)) > 0) {
+        if len > max) {
             max = len;
             copy(longest, line);
         }
     }
-    
-    if (max > 0) {
-        printf("%s", longest);
-    }
-    return 0;
+    if (max > 0)
+        prinf("%s", longest);
 }
 
-int readline(char s[], int lim)
+int readline(s[], lim)
 {
-    int i, c;
-    for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c != '\n'; ++i) {
+    int c, i;
+    for (i = 0; (c = getchar()) != EOF && i < lim - 1 && c !='\n'; ++i) {
         s[i] = c;
     }
     if (c == '\n') {
-        s[i] = c;
+        s[i] = '\n';
         ++i;
     }
     s[i] = '\0';
+
     return i;
 }
-         
-void copy(char to[], char from[])
+
+void copy(to[], from[])
 {
     int i;
-    i = 0;
-    while ((to[i] = from[i]) != '\0')
-        ++i;
+    for (i = 0; (to[i] = from[i]) != '\0'; ++i)
+    ;
 }
